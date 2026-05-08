@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Primary Meta -->
+  <title>StreakDayscore — Habit & Task Tracker</title>
+  <meta name="description" content="Track your daily habits and personal tasks. Earn XP, level up, and build consistency day by day.">
+  <meta name="author" content="Mihai-gitto">
+  <meta name="keywords" content="habit tracker, task tracker, productivity, XP, levels, self-improvement, consistency">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="StreakDayscore">
+  <meta property="og:description" content="Track your daily habits and personal tasks. Earn XP and build consistency day by day.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mihai-gitto.github.io/streakdayscore">
+  <meta property="og:image" content="https://mihai-gitto.github.io/streakdayscore/assets/og-image.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="StreakDayscore">
+  <meta name="twitter:description" content="Habit & Task Tracker with XP and level system.">
+
+  <!-- Theme color -->
+  <meta name="theme-color" content="#534AB7">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=DM+Serif+Display&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="layout">
+
+  <!-- ── Sidebar ── -->
+  <nav class="sidebar" aria-label="Life areas">
+    <div class="logo">Streak<span>Dayscore</span></div>
+
+    <button class="nav-item active" data-z="all">
+      <i class="ti ti-layout-grid" aria-hidden="true"></i> All
+    </button>
+    <button class="nav-item" data-z="spirituality">
+      <i class="ti ti-bible" aria-hidden="true"></i> Spirituality
+    </button>
+    <button class="nav-item" data-z="health">
+      <i class="ti ti-run" aria-hidden="true"></i> Health &amp; Sport
+    </button>
+    <button class="nav-item" data-z="professional">
+      <i class="ti ti-briefcase" aria-hidden="true"></i> Professional
+    </button>
+    <button class="nav-item" data-z="family">
+      <i class="ti ti-heart" aria-hidden="true"></i> Family &amp; Relations
+    </button>
+    <button class="nav-item" data-z="other">
+      <i class="ti ti-dots-circle-horizontal" aria-hidden="true"></i> Other
+    </button>
+
+    <div class="sidebar-footer">
+      <p>Data is saved locally in your browser. No account needed.</p>
+    </div>
+  </nav>
+
+  <!-- ── Main ── -->
+  <main class="main">
+
+    <div class="page-header">
+      <div>
+        <h1 id="zone-title">All</h1>
+        <p id="today-date"></p>
+      </div>
+    </div>
+
+    <!-- Level / XP -->
+    <div class="level-block">
+      <div class="level-circle">
+        <div class="lv-n" id="level-n">1</div>
+        <div class="lv-l">level</div>
+      </div>
+      <div class="level-info">
+        <div class="xp-row">
+          <span id="xp-label">0 XP total</span>
+          <span id="xp-next-lbl">next level: 100 XP</span>
+        </div>
+        <div class="xp-bar"><div class="xp-fill" id="xp-fill" style="width:0%"></div></div>
+        <div class="xp-sub" id="streak-lbl"></div>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="n" id="st-done">0</div>
+        <div class="l">Completed today</div>
+      </div>
+      <div class="stat-card">
+        <div class="n" id="st-pts">0</div>
+        <div class="l">XP earned today</div>
+      </div>
+      <div class="stat-card">
+        <div class="n" id="st-pct">0%</div>
+        <div class="l">Today's progress</div>
+      </div>
+    </div>
+
+    <!-- Daily Habits -->
+    <div class="section-head">
+      <h2><i class="ti ti-repeat" aria-hidden="true"></i> Daily Habits</h2>
+      <button class="add-btn" id="add-habit-btn">
+        <i class="ti ti-plus" aria-hidden="true"></i> Add habit
+      </button>
+    </div>
+    <div class="item-list" id="habits-list"></div>
+
+    <!-- Tasks -->
+    <div class="section-head" style="margin-top:2rem">
+      <h2><i class="ti ti-checkbox" aria-hidden="true"></i> Tasks</h2>
+      <button class="add-btn" id="add-task-btn">
+        <i class="ti ti-plus" aria-hidden="true"></i> Add task
+      </button>
+    </div>
+    <div class="item-list" id="tasks-list"></div>
+
+    <div style="height:4rem"></div>
+  </main>
+</div>
+
+<!-- ── Modal ── -->
+<div class="modal-overlay" id="modal" style="display:none" role="dialog" aria-modal="true" aria-labelledby="modal-heading">
+  <div class="modal-box">
+    <h3 id="modal-heading">New Habit</h3>
+
+    <div class="field">
+      <label for="f-name">Name</label>
+      <input id="f-name" type="text" placeholder="e.g. Read the Bible" autocomplete="off">
+    </div>
+
+    <div class="field">
+      <label for="f-zone">Area</label>
+      <select id="f-zone">
+        <option value="spirituality">Spirituality</option>
+        <option value="health">Health / Sport</option>
+        <option value="professional">Professional</option>
+        <option value="family">Family / Relations</option>
+        <option value="other">Other</option>
+      </select>
+    </div>
+
+    <div class="field" id="f-deadline-wrap" style="display:none">
+      <label for="f-deadline">Deadline (optional)</label>
+      <input id="f-deadline" type="date">
+    </div>
+
+    <div class="field">
+      <label for="f-pts">XP Points <span class="label-hint">(1 – 20)</span></label>
+      <input id="f-pts" type="number" min="1" max="20" value="5">
+      <p class="field-hint">How important / difficult is it? Harder = more points.</p>
+    </div>
+
+    <div class="field">
+      <label for="f-note">Note (optional)</label>
+      <textarea id="f-note" placeholder="details, context..."></textarea>
+    </div>
+
+    <div class="modal-btns">
+      <button id="modal-cancel">Cancel</button>
+      <button class="primary" id="modal-save">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── Toast ── -->
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="js/app.js"></script>
+</body>
+</html>
