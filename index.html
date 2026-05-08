@@ -5,25 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- Primary Meta -->
-  <title>StreakDayscore — Habit & Task Tracker</title>
+  <title>StreakDayscore</title>
   <meta name="description" content="Track your daily habits and personal tasks. Earn XP, level up, and build consistency day by day.">
   <meta name="author" content="Mihai-gitto">
-  <meta name="keywords" content="habit tracker, task tracker, productivity, XP, levels, self-improvement, consistency">
+
+  <!-- PWA — makes it installable on iPhone -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="StreakDayscore">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+
+  <!-- Theme color (status bar on Android, top bar on iOS) -->
+  <meta name="theme-color" content="#534AB7">
+
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="manifest.json">
 
   <!-- Open Graph -->
   <meta property="og:title" content="StreakDayscore">
   <meta property="og:description" content="Track your daily habits and personal tasks. Earn XP and build consistency day by day.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://mihai-gitto.github.io/streakdayscore">
-  <meta property="og:image" content="https://mihai-gitto.github.io/streakdayscore/assets/og-image.png">
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="StreakDayscore">
-  <meta name="twitter:description" content="Habit & Task Tracker with XP and level system.">
-
-  <!-- Theme color -->
-  <meta name="theme-color" content="#534AB7">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -64,7 +66,7 @@
     </button>
 
     <div class="sidebar-footer">
-      <p>Data is saved locally in your browser. No account needed.</p>
+      <p>Data is saved locally on your device. No account needed.</p>
     </div>
   </nav>
 
@@ -128,7 +130,7 @@
     </div>
     <div class="item-list" id="tasks-list"></div>
 
-    <div style="height:4rem"></div>
+    <div style="height:5rem"></div>
   </main>
 </div>
 
@@ -179,6 +181,8 @@
 <!-- ── Toast ── -->
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
+<!-- ── Scripts ── -->
 <script src="js/app.js"></script>
+<script src="js/sw-register.js"></script>
 </body>
 </html>
